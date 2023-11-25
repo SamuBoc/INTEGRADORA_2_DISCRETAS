@@ -1,0 +1,16 @@
+com/example/animationg3/control/HelloController.class
+com/example/animationg3/model/TypeOcuped.class
+com/example/animationg3/model/Direction.class
+com/example/animationg3/model/CollisionType.class
+com/example/animationg3/screens/ScreenA.class
+com/example/animationg3/model/Avatar$1.class
+com/example/animationg3/model/Bomb$1.class
+com/example/animationg3/model/Enemigo.class
+com/example/animationg3/model/State.class
+module-info.class
+com/example/animationg3/model/Avatar.class
+com/example/animationg3/model/Bomb.class
+com/example/animationg3/model/Box.class
+com/example/animationg3/HelloApplication.class
+com/example/animationg3/model/Box$1.class
+com/example/animationg3/model/Position.class
