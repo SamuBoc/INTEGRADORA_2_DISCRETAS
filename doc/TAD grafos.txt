@@ -97,3 +97,85 @@ class GrafoLista:
         nodo2 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo2)
         return nodo2 in nodo1.adyacentes
 
+DESCRIPCION DE TAD
+
+La implementación actual incluye dos clases para representar grafos: `GrafoMatriz` y `GrafoLista`, utilizando, respectivamente, una matriz de adyacencia y una lista de adyacencia. A continuación, se presenta la definición del TAD (Tipo Abstracto de Datos) para cada estructura de datos:
+
+### TAD para Grafo con Matriz de Adyacencia
+
+**Nombre:** GrafoMatriz
+
+**Descripción del Objeto Abstracto:**
+Representa un grafo utilizando una matriz de adyacencia para almacenar las relaciones entre nodos.
+
+**Invariante:**
+- La longitud de la lista de nodos debe ser igual a la longitud de la matriz de adyacencia.
+
+**Declaración de Operaciones:**
+1. **`__init__(self):`**
+   - **Descripción:** Inicializa un grafo con una lista de nodos vacía y una matriz de adyacencia vacía.
+   
+2. **`agregar_nodo(self, valor):`**
+   - **Entrada:** `valor` (valor del nodo a agregar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Agrega un nuevo nodo al grafo y actualiza la matriz de adyacencia.
+
+3. **`agregar_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos a conectar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Agrega una arista entre los nodos con los valores especificados y actualiza la matriz de adyacencia.
+
+4. **`eliminar_nodo(self, valor):`**
+   - **Entrada:** `valor` (valor del nodo a eliminar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Elimina un nodo con el valor especificado y las aristas relacionadas, actualizando la matriz de adyacencia.
+
+5. **`eliminar_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales eliminar la arista).
+   - **Salida:** Ninguna.
+   - **Descripción:** Elimina una arista entre los nodos con los valores especificados y actualiza la matriz de adyacencia.
+
+6. **`existe_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales verificar la existencia de la arista).
+   - **Salida:** Booleano.
+   - **Descripción:** Comprueba si existe una arista entre los nodos con los valores especificados.
+
+### TAD para Grafo con Lista de Adyacencia
+
+**Nombre:** GrafoLista
+
+**Descripción del Objeto Abstracto:**
+Representa un grafo utilizando una lista de adyacencia para almacenar las relaciones entre nodos.
+
+**Invariante:**
+- La lista de nodos debe contener nodos con referencias válidas a otros nodos en la misma lista.
+
+**Declaración de Operaciones:**
+1. **`__init__(self):`**
+   - **Descripción:** Inicializa un grafo con una lista de nodos vacía.
+
+2. **`agregar_nodo(self, valor):`**
+   - **Entrada:** `valor` (valor del nodo a agregar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Agrega un nuevo nodo al grafo.
+
+3. **`agregar_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos a conectar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Agrega una arista entre los nodos con los valores especificados.
+
+4. **`eliminar_nodo(self, valor):`**
+   - **Entrada:** `valor` (valor del nodo a eliminar).
+   - **Salida:** Ninguna.
+   - **Descripción:** Elimina un nodo con el valor especificado y las aristas relacionadas.
+
+5. **`eliminar_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales eliminar la arista).
+   - **Salida:** Ninguna.
+   - **Descripción:** Elimina una arista entre los nodos con los valores especificados.
+
+6. **`existe_arista(self, valor_nodo1, valor_nodo2):`**
+   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales verificar la existencia de la arista).
+   - **Salida:** Booleano.
+   - **Descripción:** Comprueba si existe una arista entre los nodos con los valores especificados.
+
