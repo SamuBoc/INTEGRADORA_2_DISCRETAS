@@ -1,53 +1,61 @@
-class NodoGenerico:
-    def __init__(self, valor):
-        self.valor = valor
+TAD Grafo con Matriz de Adyacencia
+GrafoMatrizAdyacencia:
 
-# TAD (Tipo Abstracto de Datos) para Grafo con Matriz de Adyacencia
+Atributos:
+size: data
+matrizAdyacencia: data x data
 
-# Definición de la clase GrafoMatriz
-class GrafoMatriz:
-    def __init__(self):
-        self.nodos = []  # Lista de nodos
-        self.matriz = []  # Matriz de adyacencia
 
-    def agregar_nodo(self, valor):
-        # Agregar un nuevo nodo al grafo
-        nuevo_nodo = NodoGenerico(valor)
-        self.nodos.append(nuevo_nodo)
-        # Actualizar la matriz de adyacencia con una nueva fila y columna
-        for fila in self.matriz:
-            fila.append(False)
-        nueva_fila = [False] * len(self.nodos)
-        self.matriz.append(nueva_fila)
+CreateGraph(size): data -> GrafoMatrizAdyacencia
+AddEdge(nodo1, nodo2, peso): GrafoMatrizAdyacencia x data x data x data -> void
+RemoveEdge(nodo1, nodo2): GrafoMatrizAdyacencia x data x data -> void
+HasEdge(nodo1, nodo2): GrafoMatrizAdyacencia x data x data -> boolean
+GetSize(): GrafoMatrizAdyacencia -> data
+ClearGraph(): GrafoMatrizAdyacencia -> void
 
-    def agregar_arista(self, valor_nodo1, valor_nodo2):
-        # Agregar una arista entre los nodos con los valores especificados
-        indice_nodo1 = self.nodos.index(NodoGenerico(valor_nodo1))
-        indice_nodo2 = self.nodos.index(NodoGenerico(valor_nodo2))
-        self.matriz[indice_nodo1][indice_nodo2] = True
-        self.matriz[indice_nodo2][indice_nodo1] = True
+Primitive Operations:
 
-    def eliminar_nodo(self, valor):
-        # Eliminar un nodo con el valor especificado y las aristas relacionadas
-        indice_nodo = self.nodos.index(NodoGenerico(valor))
-        del self.nodos[indice_nodo]
-        del self.matriz[indice_nodo]
-        for fila in self.matriz:
-            del fila[indice_nodo]
+CreateGraph(size): data -> GrafoMatrizAdyacencia
+“Crea un nuevo grafo con matriz de adyacencia”
 
-    def eliminar_arista(self, valor_nodo1, valor_nodo2):
-        # Eliminar una arista entre los nodos con los valores especificados
-        indice_nodo1 = self.nodos.index(NodoGenerico(valor_nodo1))
-        indice_nodo2 = self.nodos.index(NodoGenerico(valor_nodo2))
-        self.matriz[indice_nodo1][indice_nodo2] = False
-        self.matriz[indice_nodo2][indice_nodo1] = False
+{pre: size}
 
-    def existe_arista(self, valor_nodo1, valor_nodo2):
-        # Comprobar si existe una arista entre los nodos con los valores especificados
-        indice_nodo1 = self.nodos.index(NodoGenerico(valor_nodo1))
-        indice_nodo2 = self.nodos.index(NodoGenerico(valor_nodo2))
-        return self.matriz[indice_nodo1][indice_nodo2]
+{pos: imprime la matriz de adyacencia del grafo}
 
+AddEdge(nodo1, nodo2, peso): GrafoMatrizAdyacencia x data x data x data -> void
+“Agrega una arista entre nodo1 y nodo2 con el peso especificado”
+
+{pre: nodo1, nodo2, peso}
+
+{pos: imprime la matriz de adyacencia actualizada}
+
+RemoveEdge(nodo1, nodo2): GrafoMatrizAdyacencia x data x data -> void
+“Elimina la arista entre nodo1 y nodo2”
+
+{pre: nodo1, nodo2}
+
+{pos: imprime la matriz de adyacencia actualizada}
+
+HasEdge(nodo1, nodo2): GrafoMatrizAdyacencia x data x data -> boolean
+“Verifica si hay una arista entre nodo1 y nodo2”
+
+{pre: nodo1, nodo2}
+
+{pos: imprime true si hay una arista, false de lo contrario}
+
+GetSize(): GrafoMatrizAdyacencia -> data
+“Obtiene el tamaño del grafo”
+
+{pre:}
+
+{pos: imprime el tamaño del grafo}
+
+ClearGraph(): GrafoMatrizAdyacencia -> void
+“Elimina todas las aristas del grafo”
+
+{pre:}
+
+{pos: imprime la matriz de adyacencia vacía}
 
 
 
@@ -57,125 +65,69 @@ class GrafoMatriz:
 
 # TAD (Tipo Abstracto de Datos) para Grafo con Lista de Adyacencia
 
-# Definición de la clase GrafoLista
-class GrafoLista:
-    def __init__(self):
-        self.nodos = []  # Lista de nodos
 
-    def agregar_nodo(self, valor):
-        # Agregar un nuevo nodo al grafo
-        nuevo_nodo = NodoGenerico(valor)
-        self.nodos.append(nuevo_nodo)
 
-    def agregar_arista(self, valor_nodo1, valor_nodo2):
-        # Agregar una arista entre los nodos con los valores especificados
-        nodo1 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo1)
-        nodo2 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo2)
-        nodo1.adyacentes.append(nodo2)
-        nodo2.adyacentes.append(nodo1)
+GrafoListaAdyacencia:
 
-    def eliminar_nodo(self, valor):
-        # Eliminar un nodo con el valor especificado y las aristas relacionadas
-        nodo_eliminar = next(nodo for nodo in self.nodos if nodo.valor == valor)
-        self.nodos.remove(nodo_eliminar)
-        for nodo in self.nodos:
-            if nodo_eliminar in nodo.adyacentes:
-                nodo.adyacentes.remove(nodo_eliminar)
+Atributos:
+size: data
+listaAdyacencia: data x data
 
-    def eliminar_arista(self, valor_nodo1, valor_nodo2):
-        # Eliminar una arista entre los nodos con los valores especificados
-        nodo1 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo1)
-        nodo2 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo2)
-        if nodo2 in nodo1.adyacentes:
-            nodo1.adyacentes.remove(nodo2)
-        if nodo1 in nodo2.adyacentes:
-            nodo2.adyacentes.remove(nodo1)
+CreateGraph(size): data -> GrafoListaAdyacencia
+AddEdge(nodo1, nodo2, peso): GrafoListaAdyacencia x data x data x data -> void
+RemoveEdge(nodo1, nodo2): GrafoListaAdyacencia x data x data -> void
+HasEdge(nodo1, nodo2): GrafoListaAdyacencia x data x data -> boolean
+GetSize(): GrafoListaAdyacencia -> data
+ClearGraph(): GrafoListaAdyacencia -> void
 
-    def existe_arista(self, valor_nodo1, valor_nodo2):
-        # Comprobar si existe una arista entre los nodos con los valores especificados
-        nodo1 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo1)
-        nodo2 = next(nodo for nodo in self.nodos if nodo.valor == valor_nodo2)
-        return nodo2 in nodo1.adyacentes
 
-DESCRIPCION DE TAD
 
-La implementación actual incluye dos clases para representar grafos: `GrafoMatriz` y `GrafoLista`, utilizando, respectivamente, una matriz de adyacencia y una lista de adyacencia. A continuación, se presenta la definición del TAD (Tipo Abstracto de Datos) para cada estructura de datos:
+GrafoListaAdyacencia:
 
-### TAD para Grafo con Matriz de Adyacencia
+Atributos:
+size: data
+listaAdyacencia: data x data
+Primitive Operations:
 
-**Nombre:** GrafoMatriz
+CreateGraph(size): data -> GrafoListaAdyacencia
+“Crea un nuevo grafo con lista de adyacencia”
 
-**Descripción del Objeto Abstracto:**
-Representa un grafo utilizando una matriz de adyacencia para almacenar las relaciones entre nodos.
+{pre: size}
 
-**Invariante:**
-- La longitud de la lista de nodos debe ser igual a la longitud de la matriz de adyacencia.
+{pos: imprime la lista de adyacencia del grafo}
 
-**Declaración de Operaciones:**
-1. **`__init__(self):`**
-   - **Descripción:** Inicializa un grafo con una lista de nodos vacía y una matriz de adyacencia vacía.
-   
-2. **`agregar_nodo(self, valor):`**
-   - **Entrada:** `valor` (valor del nodo a agregar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Agrega un nuevo nodo al grafo y actualiza la matriz de adyacencia.
+AddEdge(nodo1, nodo2, peso): GrafoListaAdyacencia x data x data x data -> void
+“Agrega una arista entre nodo1 y nodo2 con el peso especificado”
 
-3. **`agregar_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos a conectar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Agrega una arista entre los nodos con los valores especificados y actualiza la matriz de adyacencia.
+{pre: nodo1, nodo2, peso}
 
-4. **`eliminar_nodo(self, valor):`**
-   - **Entrada:** `valor` (valor del nodo a eliminar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Elimina un nodo con el valor especificado y las aristas relacionadas, actualizando la matriz de adyacencia.
+{pos: imprime la lista de adyacencia actualizada}
 
-5. **`eliminar_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales eliminar la arista).
-   - **Salida:** Ninguna.
-   - **Descripción:** Elimina una arista entre los nodos con los valores especificados y actualiza la matriz de adyacencia.
+RemoveEdge(nodo1, nodo2): GrafoListaAdyacencia x data x data -> void
+“Elimina la arista entre nodo1 y nodo2”
 
-6. **`existe_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales verificar la existencia de la arista).
-   - **Salida:** Booleano.
-   - **Descripción:** Comprueba si existe una arista entre los nodos con los valores especificados.
+{pre: nodo1, nodo2}
 
-### TAD para Grafo con Lista de Adyacencia
+{pos: imprime la lista de adyacencia actualizada}
 
-**Nombre:** GrafoLista
+HasEdge(nodo1, nodo2): GrafoListaAdyacencia x data x data -> boolean
+“Verifica si hay una arista entre nodo1 y nodo2”
 
-**Descripción del Objeto Abstracto:**
-Representa un grafo utilizando una lista de adyacencia para almacenar las relaciones entre nodos.
+{pre: nodo1, nodo2}
 
-**Invariante:**
-- La lista de nodos debe contener nodos con referencias válidas a otros nodos en la misma lista.
+{pos: imprime true si hay una arista, false de lo contrario}
 
-**Declaración de Operaciones:**
-1. **`__init__(self):`**
-   - **Descripción:** Inicializa un grafo con una lista de nodos vacía.
+GetSize(): GrafoListaAdyacencia -> data
+“Obtiene el tamaño del grafo”
 
-2. **`agregar_nodo(self, valor):`**
-   - **Entrada:** `valor` (valor del nodo a agregar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Agrega un nuevo nodo al grafo.
+{pre:}
 
-3. **`agregar_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos a conectar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Agrega una arista entre los nodos con los valores especificados.
+{pos: imprime el tamaño del grafo}
 
-4. **`eliminar_nodo(self, valor):`**
-   - **Entrada:** `valor` (valor del nodo a eliminar).
-   - **Salida:** Ninguna.
-   - **Descripción:** Elimina un nodo con el valor especificado y las aristas relacionadas.
+ClearGraph(): GrafoListaAdyacencia -> void
+“Elimina todas las aristas del grafo”
 
-5. **`eliminar_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales eliminar la arista).
-   - **Salida:** Ninguna.
-   - **Descripción:** Elimina una arista entre los nodos con los valores especificados.
+{pre:}
 
-6. **`existe_arista(self, valor_nodo1, valor_nodo2):`**
-   - **Entradas:** `valor_nodo1`, `valor_nodo2` (valores de los nodos entre los cuales verificar la existencia de la arista).
-   - **Salida:** Booleano.
-   - **Descripción:** Comprueba si existe una arista entre los nodos con los valores especificados.
+{pos: imprime la lista de adyacencia vacía}
 
